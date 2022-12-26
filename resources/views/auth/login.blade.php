@@ -1,55 +1,144 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <title>Login Page</title>
+    {{-- <link rel="stylesheet" href="style.css" media="screen" title="no title"> --}}
+    <style>
+   body {
+   margin: 0;
+   padding: 0;
+   background: #90caf9;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   font-family: sans-serif;
+ }
+ .login {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-30%, -50%);
+   background: rgba(4, 29, 23, 0.5);
+   padding: 50px;
+   width: 270px;
+   box-shadow: 0px 0px 25px 10px black;
+   border-radius: 15px;
+ }
+ .avatar {
+   font-size: 30px ;
+   background: #90caf9;
+   width: 50px;
+   height: 50px;
+   line-height: 50px;
+   position: fixed;
+   left: 50%;
+   top: 0;
+   transform: translate(-50%, -50%);
+   text-align: center;
+   border-radius: 50%;
+ }
+ .login h2 {
+   text-align: center;
+   color: white;
+   font-size: 30px;
+   font-family: sans-serif;
+   letter-spacing: 3px;
+   padding-top: 0;
+   margin-top: -20px;
+ }
+ .box-login {
+   display: flex;
+   justify-content:space-between;
+   margin: 10px;
+   border-bottom: 2px solid white;
+   padding: 8px 0;
+ }
+ .box-login i {
+   font-size: 23px;
+   color: white;
+   padding: 5px 0;
+ }
+ .box-login input {
+   width: 85%;
+   padding: 5px 0;
+   background: none;
+   border: none;
+   outline: none;
+   color: white;
+   font-size: 18px;
+ }
+ .box-login input::placeholder {
+   color: white;
+ }
+ .btn-login
+ .box-login input:hover{
+   background: rgba(10, 10, 10,s 0.5);
+ }
+ .btn-login {
+   margin-left: 10px;
+   margin-bottom: 20px;
+   background: none;
+   border: 1px solid white;
+   width: 92.5%;
+   padding: 10px;
+   color: white;
+   font-size: 18px;
+   letter-spacing: 3px;
+   cursor: pointer;
+   }
+ .btn-login:hover{
+   background: rgba(12, 30, 15, 0.5);
+ }
+ .bottom {
+   margin-left: 10px;
+   margin-right: 10px;
+   display: flex;
+   justify-content: space-between;
+ }
+ .bottom a {
+   color: white;
+   font-size: 15px;
+   text-decoration: none;
+ }
+ .bottom a:hover {
+ text-decoration: underline;
+ }
+    </style>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      <div class="login">
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+          <div class="avatar">
+            <i class="fa fa-user"></i>
+          </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
+          <h2>Login Form</h2>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+          <form action="{{ route('login') }}" method="POST">
+          <div class="box-login">
+            <i class="fas fa-envelope-open"></i>
+            <input type="text">
+          </div>
+          </form>
+          {{-- <div class="box-login">
+            <i class="fas fa-envelope-open-text"></i>
+            <input type="text" placeholder="Email">
+          </div>
 
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+          <div class="box-login">
+            <i class="fas fa-lock"></i>
+            <input type="text" placeholder="Password">
+          </div>
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
+          <button type="submit" name="login" class="btn-login">Login</button>
+          <div class="bottom">
+            <a href="register">Register</a>
+            <a href="#">Forgot Password</a>
+          </div> --}}
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+      </div>
+  </head>
+  </html>
